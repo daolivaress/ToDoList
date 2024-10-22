@@ -14,7 +14,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, index, deleteTask }) => {
         onClick={() => deleteTask(index)}
         className="bg-red-500 text-white px-3 py-1 rounded"
       >
-        <img src={Basura} alt="Delete" className="h-5 w-5" /> {/* Usa el SVG */}
+        <img src={Basura} alt="Delete" className="h-5 w-5" />
         </button>
     </div>
   );

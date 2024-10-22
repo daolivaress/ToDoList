@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<string[]>(() => {
-    // Obtener las tareas del localStorage al cargar la página
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
 
   useEffect(() => {
-    // Guardar las tareas en localStorage cada vez que cambien
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 

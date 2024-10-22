@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface TaskFormProps {
   addTask: (task: string) => void;
