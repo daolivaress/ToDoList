@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { IoMdAdd } from "react-icons/io";
+
 
 interface TaskFormProps {
   addTask: (task: string) => void;
@@ -22,10 +24,10 @@ const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
         value={task}
         onChange={(e) => setTask(e.target.value)}
         placeholder="Task"
-        className="border rounded px-3 py-2 mr-2 flex-grow"
+        className="border border-black rounded px-3 py-2 mr-2 flex-grow shadow-md"
       />
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Add
+      <button type="submit" className="bg-blue-700 text-white rounded-full p-2 font-bold text-2xl transition-all hover:scale-105 hover:bg-blue-500 hover:rotate-180 hover:shadow-lg hover:shadow-blue-300">
+        <IoMdAdd />
       </button>
     </form>
   );
