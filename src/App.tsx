@@ -1,9 +1,18 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 
 const App: React.FC = () => {
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<string[]>(() => {
+    // Obtener las tareas del localStorage al cargar la página
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(() => {
+    // Guardar las tareas en localStorage cada vez que cambien
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (newTask: string) => {
     setTasks([...tasks, newTask]);
@@ -15,7 +24,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col text-center justify-items-center items-center justify-center content-center p-5 bg-gray-100 min-h-screen">
+    <div className="flex flex-col items-center justify-center p-5 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-4">To Do List</h1>
       <TaskForm addTask={addTask} />
       <TaskList tasks={tasks} deleteTask={deleteTask} />
